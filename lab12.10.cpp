@@ -242,14 +242,18 @@ Node* deleteMin(Node* p) {
 }
 
 Node* Delete(Node* p, int value) {
-	if (!p) return 0;
-	if (value < p->info) p->left = Delete(p->left, value);
-	else if (value > p->info) p->right = Delete(p->right, value);
-	else {
+	if (!p)
+		return 0;
+	 
+		p->left = Delete(p->left, value);
+		p->right = Delete(p->right, value);
+		if (value == p->info)
+	{
 		Node* q = p->left;
 		Node* r = p->right;
 		delete p;
-		if (!r) return q;
+		if (!r)
+			return q;
 		Node* min = FindMin(r);
 		min->right = deleteMin(r);
 		min->left = q;
